@@ -1,4 +1,4 @@
-FROM node:8
+FROM daocloud.io/node:8
 
 WORKDIR /www
 COPY index.html /www
