@@ -15,3 +15,34 @@ spec:
       containers:
       - name: demo
         image: {{CR_IMAGE}}
+        ports:
+          - name: http
+            containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: demo
+  labels:
+    app: demo
+spec:
+  selector:
+    app: demo
+  ports:
+    - port: 80
+      targetPort: http
+      name: http
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo
+spec:
+  rules:
+    - host: /
+      http:
+        paths:
+          - backend:
+              serviceName: demo
+              servicePort: 80
+            path: /
