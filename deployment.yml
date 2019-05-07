@@ -39,7 +39,7 @@ metadata:
   name: demo
 spec:
   rules:
-    - host: /
+    - host:
       http:
         paths:
           - backend:
