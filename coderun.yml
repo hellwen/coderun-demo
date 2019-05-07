@@ -1,0 +1,14 @@
+steps:
+  docker:
+    image: crun/docker
+    settings:
+      registry_name: coderun
+      repo_name: demo
+      tags: ${CI_COMMIT_BRANCH}
+
+  deploy:
+    image: crun/kube
+    settings:
+      cluster_name: myk8s
+      namespace: default
+      template: deployment.yml
